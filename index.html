@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primos Premier Pro Wrestling – Colorado's Longest Running Indie Promotion</title>
+  <meta name="description" content="Primos Premier Pro Wrestling – Colorado's longest running independent wrestling promotion. Live events, training, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red:    #d10000;
+      --red-dk: #a00000;
+      --gold:   #c9a227;
+      --bg:     #0c0c0c;
+      --bg2:    #141414;
+      --bg3:    #1c1c1c;
+      --text:   #f0f0f0;
+      --muted:  #999;
+      --border: #2a2a2a;
+      --radius: 6px;
+      --nav-h:  70px;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-ui:      'Oswald', sans-serif;
+      --font-body:    'Inter', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Utility ───────────────────────────────────────── */
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 90px 0; }
+    .section--dark  { background: var(--bg2); }
+    .section--darker{ background: var(--bg3); }
+    .section-label {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 560px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      font-family: var(--font-ui);
+      font-size: 15px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: filter .2s, transform .15s;
+      border: none;
+    }
+    .btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .btn-primary { background: var(--red); color: #fff; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--red); color: var(--red); }
+    .btn-gold { background: var(--gold); color: #000; }
+    .divider {
+      width: 48px; height: 3px;
+      background: var(--red);
+      margin-bottom: 28px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .tag-red  { background: var(--red);  color: #fff; }
+    .tag-gold { background: var(--gold); color: #000; }
+
+    /* ─── Nav ───────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      background: rgba(12,12,12,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s;
+    }
+    #navbar.scrolled { border-color: var(--border); }
+    #navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: var(--radius);
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links .nav-cta a {
+      background: var(--red);
+      color: #fff;
+      padding: 8px 16px;
+    }
+    .nav-links .nav-cta a:hover { color: #fff; filter: brightness(1.1); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: var(--nav-h) 0 0 0;
+      background: var(--bg);
+      z-index: 999;
+      flex-direction: column;
+      padding: 32px 24px;
+      gap: 0;
+      overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-ui);
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .mobile-menu a:hover { color: var(--text); }
+
+    /* ─── Hero ──────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      padding-bottom: 80px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(12,12,12,.3) 0%, rgba(12,12,12,.85) 70%, var(--bg) 100%),
+        linear-gradient(135deg, #1a0000 0%, #0c0c0c 50%, #000d1a 100%);
+      z-index: 0;
+    }
+    /* Decorative red spotlight */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(209,0,0,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    /* Decorative grid */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 12vw, 9rem);
+      line-height: .9;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+    .hero-title .line2 { color: var(--red); }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-ui);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    /* Scrolling ticker */
+    .hero-ticker {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: var(--red);
+      height: 36px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      z-index: 2;
+    }
+    .hero-ticker-inner {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 25s linear infinite;
+      gap: 60px;
+    }
+    .hero-ticker-inner span {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .hero-ticker-inner span::before {
+      content: '★  ';
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── Events ────────────────────────────────────────── */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .event-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color .25s, transform .2s;
+    }
+    .event-card:hover { border-color: var(--red); transform: translateY(-3px); }
+    .event-card-accent {
+      height: 4px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+    }
+    .event-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+    .event-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .event-card-date {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+    .event-card-title {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      line-height: 1.05;
+      letter-spacing: .5px;
+    }
+    .event-card-venue {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .event-card-venue svg { flex-shrink: 0; }
+    .event-card-footer {
+      padding: 16px 24px 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* ─── Champions ─────────────────────────────────────── */
+    .champions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .champion-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color .25s;
+    }
+    .champion-card:hover { border-color: var(--gold); }
+    .champion-belt {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+    .champion-title {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .champion-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      line-height: 1.1;
+    }
+    .champion-meta { font-size: 12px; color: var(--muted); }
+
+    /* ─── Roster ─────────────────────────────────────────── */
+    .roster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .roster-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color .25s;
+    }
+    .roster-card:hover { border-color: var(--red); }
+    .roster-card-initials {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .roster-card-name {
+      font-family: var(--font-ui);
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .roster-card-role { font-size: 12px; color: var(--muted); }
+    .roster-card-detail { font-size: 12px; color: var(--muted); }
+    .roster-view-all {
+      margin-top: 36px;
+      text-align: center;
+    }
+
+    /* ─── Training ──────────────────────────────────────── */
+    .training-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-top: 48px;
+    }
+    .training-plans {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .plan-row {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: border-color .2s;
+    }
+    .plan-row:hover { border-color: var(--red); }
+    .plan-row.featured {
+      border-color: var(--gold);
+      background: rgba(201,162,39,.06);
+    }
+    .plan-name {
+      font-family: var(--font-ui);
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .plan-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .plan-price {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .training-info { display: flex; flex-direction: column; gap: 24px; }
+    .info-block {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .info-block-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .info-block-title {
+      font-family: var(--font-ui);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .info-block-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ─── Party ─────────────────────────────────────────── */
+    .party-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    .party-price-display {
+      text-align: center;
+      padding: 48px 32px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .party-price-label {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .party-price-amount {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .party-price-from { font-size: 14px; color: var(--muted); margin-top: 6px; }
+    .party-features {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .party-feature {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .party-feature-icon {
+      width: 32px; height: 32px;
+      background: rgba(209,0,0,.12);
+      border: 1px solid rgba(209,0,0,.25);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: .9rem;
+    }
+    .party-feature-text { font-size: 14px; color: var(--muted); padding-top: 5px; }
+    .party-feature-text strong { color: var(--text); }
+
+    /* ─── About ─────────────────────────────────────────── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .stat-box {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      color: var(--red);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+    .about-links { display: flex; flex-direction: column; gap: 14px; }
+    .about-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+      padding: 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color .2s, color .2s;
+    }
+    .about-link:hover { border-color: var(--red); color: var(--text); }
+    .about-link-icon { font-size: 1.1rem; width: 24px; text-align: center; }
+
+    /* ─── Media / Social ────────────────────────────────── */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .media-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: border-color .25s, transform .2s;
+    }
+    .media-card:hover { border-color: var(--red); transform: translateY(-2px); }
+    .media-card-icon { font-size: 2rem; }
+    .media-card-label {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .media-card-desc { font-size: 12px; color: var(--muted); }
+
+    /* ─── Contact ───────────────────────────────────────── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 48px;
+      margin-top: 48px;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .contact-item-icon {
+      width: 40px; height: 40px;
+      background: rgba(209,0,0,.1);
+      border: 1px solid rgba(209,0,0,.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .contact-item-label {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .contact-item-value { font-size: 15px; }
+    .contact-item-value a { transition: color .2s; }
+    .contact-item-value a:hover { color: var(--red); }
+    .map-embed {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 320px;
+    }
+    .map-embed iframe { width: 100%; height: 100%; border: none; }
+
+    /* ─── Footer ────────────────────────────────────────── */
+    footer {
+      background: #080808;
+      border-top: 1px solid var(--border);
+      padding: 48px 0 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .footer-brand-name span { color: var(--red); }
+    .footer-brand-desc { font-size: 13px; color: var(--muted); max-width: 280px; line-height: 1.7; }
+    .footer-col-title {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: #555;
+    }
+    .footer-lgbtq {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    /* ─── Responsive ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .training-layout,
+      .party-layout,
+      .about-layout,
+      .contact-layout,
+      .footer-top { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 60px 0; }
+      .hero-title { font-size: clamp(3rem, 15vw, 5rem); }
+      .party-price-amount { font-size: 3.5rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="container">
+    <a href="#hero" class="nav-logo">PRIMOS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#events">Events</a></li>
+      <li><a href="#champions">Champions</a></li>
+      <li><a href="#roster">Roster</a></li>
+      <li><a href="#training">Training</a></li>
+      <li><a href="#party">Primos Party</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#media">Media</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="nav-cta"><a href="https://www.primosprowrestling.net/shop" target="_blank" rel="noopener">Shop</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#events"    onclick="closeMobile()">Events</a>
+  <a href="#champions" onclick="closeMobile()">Champions</a>
+  <a href="#roster"    onclick="closeMobile()">Roster</a>
+  <a href="#training"  onclick="closeMobile()">Training</a>
+  <a href="#party"     onclick="closeMobile()">Primos Party</a>
+  <a href="#about"     onclick="closeMobile()">About</a>
+  <a href="#media"     onclick="closeMobile()">Media</a>
+  <a href="#contact"   onclick="closeMobile()">Contact</a>
+  <a href="https://www.primosprowrestling.net/shop" target="_blank" rel="noopener">Shop ↗</a>
+</div>
+
+<!-- ─── Hero ──────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container hero-content" style="padding-top:var(--nav-h)">
+    <p class="hero-eyebrow">Colorado's Longest Running Independent Wrestling Promotion</p>
+    <h1 class="hero-title">
+      ANYTIME<br>
+      <span class="line2">ANYWHERE</span>
+    </h1>
+    <p class="hero-desc">14+ years of bringing the Rocky Mountain region world-class professional wrestling—live, raw, and unforgettable.</p>
+    <div class="hero-badges">
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Westminster, CO</div>
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Est. 2011</div>
+      <div class="hero-badge"><div class="hero-badge-dot"></div>Live Events · Training · Entertainment</div>
+    </div>
+    <div class="hero-actions">
+      <a href="#events" class="btn btn-primary">View Upcoming Events</a>
+      <a href="https://www.primosprowrestling.net/videos" target="_blank" rel="noopener" class="btn btn-outline">Watch on YouTube</a>
+    </div>
+  </div>
+  <div class="hero-ticker" aria-hidden="true">
+    <div class="hero-ticker-inner">
+      <span>Primos Premier Pro Wrestling</span>
+      <span>Colorado's Longest Running Indie Promotion</span>
+      <span>Anytime · Anywhere</span>
+      <span>Alpha 9 Tournament · May 17 · The Roxy Theatre</span>
+      <span>Cinco De Mayo Lucha Showdown · Gnarly Theater</span>
+      <span>The Butcher Shop Pro Wrestling Training</span>
+      <span>Primos Premier Pro Wrestling</span>
+      <span>Colorado's Longest Running Indie Promotion</span>
+      <span>Anytime · Anywhere</span>
+      <span>Alpha 9 Tournament · May 17 · The Roxy Theatre</span>
+      <span>Cinco De Mayo Lucha Showdown · Gnarly Theater</span>
+      <span>The Butcher Shop Pro Wrestling Training</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Upcoming Events ────────────────────────────────── -->
+<section id="events" class="section section--dark">
+  <div class="container">
+    <p class="section-label">On the Card</p>
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Don't miss a single show. Grab your tickets and join us live.</p>
+
+    <div class="events-grid">
+
+      <!-- Event 1: Cinco De Mayo -->
+      <div class="event-card">
+        <div class="event-card-accent"></div>
+        <div class="event-card-body">
+          <div class="event-card-meta">
+            <span class="tag tag-red">Tickets Available</span>
+          </div>
+          <h3 class="event-card-title">Cinco De Mayo Lucha Showdown</h3>
+          <div class="event-card-venue">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Gnarly Theater
+          </div>
+          <p style="font-size:13px;color:var(--muted);">A celebration of Lucha Libre with high-flying action and authentic luchador style. Don't miss this festive showdown.</p>
+        </div>
+        <div class="event-card-footer">
+          <a href="https://aftontickets.com/event/buyticket/1g9g751298" target="_blank" rel="noopener" class="btn btn-primary">Get Tickets</a>
+          <a href="https://www.facebook.com/events/938461649098601" target="_blank" rel="noopener" class="btn btn-outline">Facebook Event</a>
+        </div>
+      </div>
+
+      <!-- Event 2: Alpha 9 -->
+      <div class="event-card">
+        <div class="event-card-accent"></div>
+        <div class="event-card-body">
+          <div class="event-card-meta">
+            <span class="tag tag-gold">May 17 · 7 PM</span>
+          </div>
+          <h3 class="event-card-title">Alpha 9 Tournament</h3>
+          <div class="event-card-venue">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            The Roxy Theatre · 2549 Welton St, Denver, CO
+          </div>
+          <p style="font-size:13px;color:var(--muted);">Primos' 11th Annual Alpha 9 Tournament. Only the best step up. 7 PM – 11 PM. Tickets coming soon.</p>
+        </div>
+        <div class="event-card-footer">
+          <a href="https://www.primosprowrestling.net/event-details/alpha-9-tournament" target="_blank" rel="noopener" class="btn btn-primary">Event Details</a>
+          <span style="font-size:12px;color:var(--muted);">Tickets coming soon</span>
+        </div>
+      </div>
+
+      <!-- All Events CTA -->
+      <div class="event-card" style="justify-content:center;align-items:center;text-align:center;min-height:200px;">
+        <div class="event-card-body" style="justify-content:center;align-items:center;">
+          <p style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:16px;">See All Events</p>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">View the full schedule of upcoming Primos shows and events.</p>
+          <a href="https://www.primosprowrestling.net/upcomingevents" target="_blank" rel="noopener" class="btn btn-outline">Full Schedule →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Champions ─────────────────────────────────────── -->
+<section id="champions" class="section">
+  <div class="container">
+    <p class="section-label">Gold &amp; Glory</p>
+    <h2 class="section-title">Current Champions</h2>
+    <div class="divider"></div>
+    <p class="section-sub">These are the title-holders who carry the Primos belts into battle every show.</p>
+
+    <div class="champions-grid">
+
+      <div class="champion-card">
+        <div class="champion-belt">🏆</div>
+        <div class="champion-title">Primos Heavyweight Champion</div>
+        <div class="champion-name">Mondo Romero</div>
+        <div class="champion-meta">300 lbs · Los Angeles, CA</div>
+      </div>
+
+      <div class="champion-card">
+        <div class="champion-belt">🥊</div>
+        <div class="champion-title">Primos Women's Champion</div>
+        <div class="champion-name">Hussy Steele</div>
+        <div class="champion-meta">5'8" · Denver, CO · Debuted 2022</div>
+      </div>
+
+      <div class="champion-card">
+        <div class="champion-belt">⚡</div>
+        <div class="champion-title">Primos 303 Champion</div>
+        <div class="champion-name">XJ Khaos</div>
+        <div class="champion-meta">6' · Montbello, CO · Psycho Wicked Club</div>
+      </div>
+
+      <div class="champion-card">
+        <div class="champion-belt">🤝</div>
+        <div class="champion-title">Primos Tag Team Champions</div>
+        <div class="champion-name">Fly Boiz</div>
+        <div class="champion-meta">High-flying duo</div>
+      </div>
+
+      <div class="champion-card">
+        <div class="champion-belt">🔪</div>
+        <div class="champion-title">Primos Chopping Block Champion</div>
+        <div class="champion-name">Zeak Gallent</div>
+        <div class="champion-meta">5'10" · 170 lbs · Broomfield, CO</div>
+      </div>
+
+      <div class="champion-card">
+        <div class="champion-belt">🌟</div>
+        <div class="champion-title">Primos Softcore Champion</div>
+        <div class="champion-name">Tyra Russamee</div>
+        <div class="champion-meta">5'2" · Thailand · Pro Debut 2015</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Roster ─────────────────────────────────────────── -->
+<section id="roster" class="section section--dark">
+  <div class="container">
+    <p class="section-label">The Locker Room</p>
+    <h2 class="section-title">Talent Roster</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Meet the men and women who make Primos Premier Pro Wrestling must-see entertainment.</p>
+
+    <div class="roster-grid">
+
+      <div class="roster-card">
+        <div class="roster-card-initials">IP</div>
+        <div class="roster-card-name">#iamthePROVIDER</div>
+        <div class="roster-card-role">Owner · Coach · Wrestler</div>
+        <div class="roster-card-detail">Denver, CO · 5'8"</div>
+      </div>
+
+      <div class="roster-card">
+        <div class="roster-card-initials">AG</div>
+        <div class="roster-card-name">Anuka Gutierrez</div>
+        <div class="roster-card-role">Wrestler</div>
+        <div class="roster-card-detail">5'8" · Denver, CO · ErzAnuka</div>
+      </div>
+
+      <div class="roster-card">
+        <div class="roster-card-initials">CC</div>
+        <div class="roster-card-name">Carter Cash</div>
+        <div class="roster-card-role">Wrestler</div>
+        <div class="roster-card-detail">Chopping Block Champion</div>
+      </div>
+
+      <div class="roster-card">
+        <div class="roster-card-initials">ET</div>
+        <div class="roster-card-name">Erza Menagerie Tinker</div>
+        <div class="roster-card-role">Wrestler · Referee</div>
+        <div class="roster-card-detail">5'7" · Area 51, NV · Fmr. Women's Champ</div>
+      </div>
+
+      <div class="roster-card">
+        <div class="roster-card-initials">HS</div>
+        <div class="roster-card-name">Hussy Steele</div>
+        <div class="roster-card-role">Wrestler · Women's Champion</div>
+        <div class="roster-card-detail">5'8" · Denver, CO</div>
+      </div>
+
+      <div class="roster-card">
+        <div class="roster-card-initials">JC</div>
+        <div class="roster-card-name">Johnny Crash</div>
+        <div class="roster-card-role">Wrestler</div>
+        <div class="roster-card-detail">Tromaville, New Jersey</div>
+      </div>
+
+      <div class="roster-card">
+        <div class="roster-card-initials">MB</div>
+        <div class="roster-card-name">Malibu Bobby</div>
+        <div class="roster-card-role">Wrestler</div>
+        <div class="roster-card-detail">175 lbs · Venice Beach, CA</div>
+      </div>
+
+      <div class="roster-card">
+        <div class="roster-card-initials">MR</div>
+        <div class="roster-card-name">Mondo Romero</div>
+        <div class="roster-card-role">Wrestler · Heavyweight Champion</div>
+        <div class="roster-card-detail">300 lbs · Los Angeles, CA</div>
+      </div>
+
+      <div class="roster-card">
+        <div class="roster-card-initials">NB</div>
+        <div class="roster-card-name">Niles Blood</div>
+        <div class="roster-card-role">Wrestler · Commentary</div>
+        <div class="roster-card-detail">210 lbs · Miami, FL · "The First Dragon"</div>
+      </div>
+
+      <div class="roster-card">
+        <div class="roster-card-initials">XK</div>
+        <div class="roster-card-name">XJ Khaos</div>
+        <div class="roster-card-role">Wrestler · 303 Champion</div>
+        <div class="roster-card-detail">6' · Montbello, CO · Psycho Wicked Club</div>
+      </div>
+
+    </div>
+
+    <div class="roster-view-all">
+      <a href="https://www.primosprowrestling.net/team-4" target="_blank" rel="noopener" class="btn btn-outline">Full Roster →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Training ──────────────────────────────────────── -->
+<section id="training" class="section">
+  <div class="container">
+    <p class="section-label">The Butcher Shop</p>
+    <h2 class="section-title">Pro Wrestling Training</h2>
+    <div class="divider"></div>
+    <p class="section-sub">6 years strong. Learn striking, grappling, and wrestling from coaches actively working in the industry.</p>
+
+    <div class="training-layout">
+
+      <div>
+        <p style="font-family:var(--font-ui);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Membership Plans</p>
+        <div class="training-plans">
+
+          <div class="plan-row">
+            <div>
+              <div class="plan-name">Free Tryout</div>
+              <div class="plan-desc">Pro Wrestling Class M–W 7–9 PM · Valid 7 days</div>
+            </div>
+            <div class="plan-price">FREE</div>
+          </div>
+
+          <div class="plan-row">
+            <div>
+              <div class="plan-name">Kids Class</div>
+              <div class="plan-desc">Weekly Sunday morning · Ages 6–16</div>
+            </div>
+            <div class="plan-price">$100<span style="font-size:.8rem;color:var(--muted)">/mo</span></div>
+          </div>
+
+          <div class="plan-row featured">
+            <div>
+              <div class="plan-name">Beginner Students</div>
+              <div class="plan-desc">Unlimited classes + 24/7 gym access</div>
+            </div>
+            <div class="plan-price">$199<span style="font-size:.8rem;color:var(--muted)">/mo</span></div>
+          </div>
+
+          <div class="plan-row">
+            <div>
+              <div class="plan-name">Veteran Membership</div>
+              <div class="plan-desc">For members with 1+ year experience</div>
+            </div>
+            <div class="plan-price">$65<span style="font-size:.8rem;color:var(--muted)">/mo</span></div>
+          </div>
+
+          <div class="plan-row">
+            <div>
+              <div class="plan-name">Drop-In Pass</div>
+              <div class="plan-desc">One-week visiting pass</div>
+            </div>
+            <div class="plan-price">$25</div>
+          </div>
+
+          <div class="plan-row">
+            <div>
+              <div class="plan-name">Annual Beginner</div>
+              <div class="plan-desc">12-month gym + training access</div>
+            </div>
+            <div class="plan-price">$2,300<span style="font-size:.7rem;color:var(--muted)">/yr</span></div>
+          </div>
+
+          <div class="plan-row">
+            <div>
+              <div class="plan-name">Annual Veteran</div>
+              <div class="plan-desc">12-month gym + training for veterans</div>
+            </div>
+            <div class="plan-price">$700<span style="font-size:.7rem;color:var(--muted)">/yr</span></div>
+          </div>
+
+        </div>
+        <div style="margin-top:24px;">
+          <a href="https://www.primosprowrestling.net/plans-pricing" target="_blank" rel="noopener" class="btn btn-primary">Sign Up / Learn More</a>
+        </div>
+      </div>
+
+      <div class="training-info">
+
+        <div class="info-block">
+          <div class="info-block-icon">📍</div>
+          <div class="info-block-title">Location</div>
+          <div class="info-block-text">
+            FusBoxe Sambo 1 Martial Arts<br>
+            9975 Wadsworth Pkwy<br>
+            Westminster, CO 80021<br>
+            24/7 gym access with membership
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-block-icon">🕐</div>
+          <div class="info-block-title">Schedule</div>
+          <div class="info-block-text">
+            Pro Wrestling Classes: Monday–Friday<br>
+            Evening sessions with optional weekends<br>
+            Youth Class: Sunday mornings (Ages 5–15)
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-block-icon">🤼</div>
+          <div class="info-block-title">Programs Include</div>
+          <div class="info-block-text">
+            Professional wrestling styles · Lucha libre · Martial arts · Striking · Grappling · Ring crew &amp; production roles · Inclusive seminars for those with developmental disabilities
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Primos Party ───────────────────────────────────── -->
+<section id="party" class="section section--darker">
+  <div class="container">
+    <p class="section-label">Book the Show</p>
+    <h2 class="section-title">Primos Party</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Birthdays, bachelor parties, gender reveals — make your celebration legendary with live pro wrestling.</p>
+
+    <div class="party-layout">
+
+      <div class="party-price-display">
+        <div class="party-price-label">Packages Starting At</div>
+        <div class="party-price-amount">$2K</div>
+        <div class="party-price-from">Customizable for any event type</div>
+        <div style="margin-top:28px;">
+          <a href="mailto:info4primos@gmail.com" class="btn btn-gold">Book Now</a>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:14px;">Give 120 days notice for belt orders</p>
+      </div>
+
+      <div class="party-features">
+
+        <div class="party-feature">
+          <div class="party-feature-icon">🎭</div>
+          <div class="party-feature-text"><strong>3–4 Live Wrestler Matches</strong> selected by the host — your celebration, your card.</div>
+        </div>
+
+        <div class="party-feature">
+          <div class="party-feature-icon">🎟️</div>
+          <div class="party-feature-text"><strong>10 Pairs of Tickets</strong> to future Primos events — keep the fun going all year.</div>
+        </div>
+
+        <div class="party-feature">
+          <div class="party-feature-icon">🏆</div>
+          <div class="party-feature-text"><strong>Replica Championship Belt</strong> available as an add-on for an additional $250.</div>
+        </div>
+
+        <div class="party-feature">
+          <div class="party-feature-icon">🤝</div>
+          <div class="party-feature-text"><strong>Meet &amp; Greet</strong> time with wrestlers after the event.</div>
+        </div>
+
+        <div class="party-feature">
+          <div class="party-feature-icon">⭐</div>
+          <div class="party-feature-text"><strong>Main Event Involvement</strong> available upon request — get in the ring!</div>
+        </div>
+
+        <div class="party-feature">
+          <div class="party-feature-icon">🌮</div>
+          <div class="party-feature-text"><strong>Lucha Libre Entertainment</strong> available at premium pricing for an authentic experience.</div>
+        </div>
+
+        <div style="margin-top:8px;">
+          <a href="https://www.primosprowrestling.net/birthdayparties" target="_blank" rel="noopener" class="btn btn-outline">Full Details →</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── About ──────────────────────────────────────────── -->
+<section id="about" class="section section--dark">
+  <div class="container">
+    <div class="about-layout">
+
+      <div>
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">About Primos</h2>
+        <div class="divider"></div>
+        <p style="color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:20px;">
+          Primos Premier Pro Wrestling is <strong style="color:var(--text)">Colorado's longest running independent wrestling promotion</strong> — a stomping ground for the wrestling superstars of yesterday, today, and tomorrow.
+        </p>
+        <p style="color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:20px;">
+          For over 14 years we've served the Rocky Mountain region with world-class live events and a training program that develops the next generation of professional wrestlers through The Butcher Shop.
+        </p>
+        <p style="color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:32px;">
+          We're proud supporters of the LGBTQIA+ community and run all-inclusive pro wrestling seminars for individuals with developmental disabilities.
+        </p>
+        <a href="https://www.primosprowrestling.net/about" target="_blank" rel="noopener" class="btn btn-outline">Read More →</a>
+
+        <div class="about-stats">
+          <div class="stat-box">
+            <span class="stat-num">14+</span>
+            <span class="stat-label">Years Running</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">9</span>
+            <span class="stat-label">Active Titles</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">Roster Members</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Training Years</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-family:var(--font-ui);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Connect &amp; Follow</p>
+        <div class="about-links">
+          <a href="https://www.facebook.com/PrimosWrestling" target="_blank" rel="noopener" class="about-link">
+            <span class="about-link-icon">📘</span>
+            <span>Facebook — PrimosWrestling</span>
+          </a>
+          <a href="https://www.youtube.com/@PrimosWrestling" target="_blank" rel="noopener" class="about-link">
+            <span class="about-link-icon">▶️</span>
+            <span>YouTube — @PrimosWrestling</span>
+          </a>
+          <a href="https://www.trillertv.com/vl/p/primos-premier-pro-wrestling/" target="_blank" rel="noopener" class="about-link">
+            <span class="about-link-icon">📺</span>
+            <span>Triller TV — Watch Live &amp; VOD</span>
+          </a>
+          <a href="https://www.luchalibre.life/" target="_blank" rel="noopener" class="about-link">
+            <span class="about-link-icon">🎭</span>
+            <span>Lucha Libre Life</span>
+          </a>
+          <a href="https://www.youtube.com/watch?v=3A8fLX_Pb3Y" target="_blank" rel="noopener" class="about-link">
+            <span class="about-link-icon">🎬</span>
+            <span>ABC Denver 7 Feature Interview</span>
+          </a>
+          <a href="https://www.primosprowrestling.net/videos" target="_blank" rel="noopener" class="about-link">
+            <span class="about-link-icon">🎥</span>
+            <span>Media Gallery &amp; Videos</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Media ──────────────────────────────────────────── -->
+<section id="media" class="section">
+  <div class="container">
+    <p class="section-label">Watch &amp; Follow</p>
+    <h2 class="section-title">Media</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Catch Primos Premier Pro Wrestling everywhere you consume content.</p>
+
+    <div class="media-grid">
+
+      <a href="https://www.youtube.com/@PrimosWrestling" target="_blank" rel="noopener" class="media-card">
+        <div class="media-card-icon">▶️</div>
+        <div class="media-card-label">YouTube</div>
+        <div class="media-card-desc">Full matches, highlights &amp; more</div>
+      </a>
+
+      <a href="https://www.facebook.com/PrimosWrestling" target="_blank" rel="noopener" class="media-card">
+        <div class="media-card-icon">📘</div>
+        <div class="media-card-label">Facebook</div>
+        <div class="media-card-desc">Events, news &amp; community</div>
+      </a>
+
+      <a href="https://www.trillertv.com/vl/p/primos-premier-pro-wrestling/" target="_blank" rel="noopener" class="media-card">
+        <div class="media-card-icon">📺</div>
+        <div class="media-card-label">Triller TV</div>
+        <div class="media-card-desc">Live streams &amp; video on demand</div>
+      </a>
+
+      <a href="https://www.luchalibre.life/" target="_blank" rel="noopener" class="media-card">
+        <div class="media-card-icon">🎭</div>
+        <div class="media-card-label">Lucha Libre Life</div>
+        <div class="media-card-desc">Partner lucha libre coverage</div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=3A8fLX_Pb3Y" target="_blank" rel="noopener" class="media-card">
+        <div class="media-card-icon">🎬</div>
+        <div class="media-card-label">ABC Denver 7</div>
+        <div class="media-card-desc">As seen on local news</div>
+      </a>
+
+      <a href="https://www.primosprowrestling.net/videos" target="_blank" rel="noopener" class="media-card">
+        <div class="media-card-icon">🎞️</div>
+        <div class="media-card-label">All Media</div>
+        <div class="media-card-desc">Full media library on the official site</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Contact ───────────────────────────────────────── -->
+<section id="contact" class="section section--dark">
+  <div class="container">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title">Contact Us</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Questions about events, training, or booking? Reach out — we'd love to hear from you.</p>
+
+    <div class="contact-layout">
+
+      <div class="contact-info">
+
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">
+              <a href="tel:+17209655858">(720) 965-5858</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Alternate Phone</div>
+            <div class="contact-item-value">
+              <a href="tel:+13034523523">(303) 452-3523</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">
+              <a href="mailto:info4primos@gmail.com">info4primos@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-value">
+              9975 Wadsworth Pkwy<br>Westminster, CO 80021
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:8px;">
+          <a href="https://www.primosprowrestling.net/contact" target="_blank" rel="noopener" class="btn btn-outline">Full Contact Page →</a>
+        </div>
+
+      </div>
+
+      <div class="map-embed">
+        <iframe
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3061.7!2d-105.0878!3d39.8719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b8e4e5c6a1b1b%3A0x1!2s9975+Wadsworth+Pkwy%2C+Westminster%2C+CO+80021!5e0!3m2!1sen!2sus!4v1"
+          title="Primos Premier Pro Wrestling location">
+        </iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">PRIMOS<span>.</span></div>
+        <div class="footer-brand-desc">Colorado's longest running independent wrestling promotion. Anytime. Anywhere.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <div class="footer-links">
+          <a href="#events">Upcoming Events</a>
+          <a href="#champions">Champions</a>
+          <a href="#roster">Talent Roster</a>
+          <a href="#training">Training</a>
+          <a href="#party">Primos Party</a>
+          <a href="#about">About</a>
+          <a href="#media">Media</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Official Links</div>
+        <div class="footer-links">
+          <a href="https://www.primosprowrestling.net" target="_blank" rel="noopener">Official Website</a>
+          <a href="https://www.primosprowrestling.net/shop" target="_blank" rel="noopener">Shop</a>
+          <a href="https://www.facebook.com/PrimosWrestling" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.youtube.com/@PrimosWrestling" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.trillertv.com/vl/p/primos-premier-pro-wrestling/" target="_blank" rel="noopener">Triller TV</a>
+          <a href="https://www.luchalibre.life/" target="_blank" rel="noopener">Lucha Libre Life</a>
+          <a href="https://aftontickets.com/event/buyticket/1g9g751298" target="_blank" rel="noopener">Buy Tickets (Cinco)</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>©2026 Primos Premier Pro Wrestling · All rights reserved</span>
+      <div class="footer-lgbtq">
+        <span>🏳️‍🌈</span> Proud LGBTQIA+ Supporter
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── Scripts ───────────────────────────────────────── -->
+<script>
+  /* Navbar scroll state */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  /* Mobile menu toggle */
+  const navToggle  = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* Intersection Observer – fade-in sections */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll(
+    '.event-card, .champion-card, .roster-card, .plan-row, .media-card, .info-block, .party-feature, .stat-box'
+  ).forEach(el => {
+    el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
